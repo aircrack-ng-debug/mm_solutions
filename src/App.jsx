@@ -2,22 +2,22 @@ import React, { useState, useEffect, useRef } from 'react';
 import { BrowserRouter, Routes, Route, Link as RouterLink, useLocation, useNavigate } from 'react-router-dom';
 
 // Pfade zu den Bildern
-const logoUrl = 'src/images/Logo_mm_solutions.png'; // Stelle sicher, dass dieser Pfad korrekt ist oder ersetze ihn
-const creatorImageUrl = 'src/images/Creator.png'; // Pfad zum Creator-Bild
-const sellerImageUrl = 'src/images/Seller.png'; // Pfad zum Seller-Bild
-const heroImageUrl = 'src/images/hero.png'; // Pfad zum Hero-Bild (männliche Figur)
-const hero2ImageUrl = 'src/images/hero_2.png'; // Pfad zum zweiten Hero-Bild (weibliche Figur)
+const logoUrl = '/images/Logo_mm_solutions.png'; // Stelle sicher, dass dieser Pfad korrekt ist oder ersetze ihn
+const creatorImageUrl = '/images/Creator.png'; // Pfad zum Creator-Bild
+const sellerImageUrl = '/images/Seller.png'; // Pfad zum Seller-Bild
+const heroImageUrl = '/images/hero.png'; // Pfad zum Hero-Bild (männliche Figur)
+const hero2ImageUrl = '/images/hero_2.png'; // Pfad zum zweiten Hero-Bild (weibliche Figur)
 
 // --- Deine Ebenen-Bilder für "How it Works" ---
 const howItWorksLayerImages = [
-    'src/images/layer_1.png',
-    'src/images/layer_2.png',
-    'src/images/layer_3.png',
-    'src/images/layer_4.png',
-    'src/images/layer_5.png',
-    'src/images/layer_6.png',
-    'src/images/layer_7.png',
-    'src/images/layer_8.png',
+    '/images/layer_1.png',
+    '/images/layer_2.png',
+    '/images/layer_3.png',
+    '/images/layer_4.png',
+    '/images/layer_5.png',
+    '/images/layer_6.png',
+    '/images/layer_7.png',
+    '/images/layer_8.png',
 ];
 // --- Ende ---
 
