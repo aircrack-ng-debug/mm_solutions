@@ -5,6 +5,8 @@ import { BrowserRouter, Routes, Route, Link as RouterLink, useLocation, useNavig
 const logoUrl = 'src/images/Logo_mm_solutions.png'; // Stelle sicher, dass dieser Pfad korrekt ist oder ersetze ihn
 const creatorImageUrl = 'src/images/Creator.png'; // Pfad zum Creator-Bild
 const sellerImageUrl = 'src/images/Seller.png'; // Pfad zum Seller-Bild
+const heroImageUrl = 'src/images/hero.png'; // Pfad zum Hero-Bild (männliche Figur)
+const hero2ImageUrl = 'src/images/hero_2.png'; // Pfad zum zweiten Hero-Bild (weibliche Figur)
 
 // --- Deine Ebenen-Bilder für "How it Works" ---
 const howItWorksLayerImages = [
@@ -38,8 +40,8 @@ const CreatorPage = () => (
                             className="absolute top-0 left-0 w-full h-full object-contain rounded-lg"
                             onError={(e) => {
                                 e.target.onerror = null;
-                                e.target.src = `https://placehold.co/500x500/e0e0e0/757575?text=Creator+Image`;
-                                e.target.alt = `Placeholder for Creator Image`;
+                                e.target.src = `https://placehold.co/500x500/e0e0e0/757575?text=Creator+Bild`;
+                                e.target.alt = `Platzhalter für Creator Bild`;
                             }}
                         />
                     </div>
@@ -105,8 +107,8 @@ const SellerPage = () => (
                             className="absolute top-0 left-0 w-full h-full object-contain rounded-lg"
                             onError={(e) => {
                                 e.target.onerror = null;
-                                e.target.src = `https://placehold.co/500x500/e0e0e0/757575?text=Seller+Image`;
-                                e.target.alt = `Placeholder for Seller Image`;
+                                e.target.src = `https://placehold.co/500x500/e0e0e0/757575?text=Seller+Bild`;
+                                e.target.alt = `Platzhalter für Seller Bild`;
                             }}
                         />
                     </div>
@@ -325,19 +327,19 @@ const Layout = ({ children }) => {
             <style>{`
               body { background-color: #FFFFFF; color: #1f2937; font-family: 'Inter', sans-serif; margin: 0; overflow-x: hidden; }
               html { scroll-behavior: smooth; }
-              .logo-cube-container { perspective: 1000px; width: 36px; height: 36px; } 
+              .logo-cube-container { perspective: 1000px; width: 36px; height: 36px; }
               .logo-cube { width: 100%; height: 100%; position: relative; transform-style: preserve-3d; animation: rotateCubeMobile 5s infinite ease-in-out; }
               .logo-cube-face { position: absolute; width: 100%; height: 100%; backface-visibility: hidden; display: flex; align-items: center; justify-content: center; font-size: 1.25rem; }
-              .logo-cube-face.logo-cube-back { color: #1f2937; font-weight: bold; } 
+              .logo-cube-face.logo-cube-back { color: #1f2937; font-weight: bold; }
               .logo-cube-front { transform: translateZ(18px); }
               .logo-cube-back { transform: rotateY(180deg) translateZ(18px); }
               .logo-cube-face img { max-width: 100%; max-height: 100%; object-fit: contain; }
               @keyframes rotateCubeMobile { 0%, 40% { transform: translateZ(-18px) rotateY(0deg); } 50%, 90% { transform: translateZ(-18px) rotateY(-180deg); } 100% { transform: translateZ(-18px) rotateY(-360deg); } }
               @media (min-width: 640px) {
-                .logo-cube-container { width: 40px; height: 40px; } 
+                .logo-cube-container { width: 40px; height: 40px; }
                 .logo-cube-front { transform: translateZ(20px); }
                 .logo-cube-back { transform: rotateY(180deg) translateZ(20px); }
-                .logo-cube { animation-name: rotateCubeDesktop; } 
+                .logo-cube { animation-name: rotateCubeDesktop; }
                 @keyframes rotateCubeDesktop { 0%, 40% { transform: translateZ(-20px) rotateY(0deg); } 50%, 90% { transform: translateZ(-20px) rotateY(-180deg); } 100% { transform: translateZ(-20px) rotateY(-360deg); } }
               }
               .fade-in-up { opacity: 0; transform: translateY(20px); transition: opacity 0.6s ease-out, transform 0.6s ease-out; }
@@ -640,30 +642,63 @@ const HomePage = () => {
             <main
                 id="hero-section"
                 ref={heroSectionRef}
-                className={`relative flex flex-grow flex-col items-center justify-center text-center fade-in-up ${isMounted ? 'fade-in-up-mounted' : ''}`}
+                className={`relative flex flex-grow flex-col items-center justify-center text-center fade-in-up ${isMounted ? 'fade-in-up-mounted' : ''} px-4 sm:px-6 lg:px-8`} /* overflow-hidden removed */
                 style={{
                     minHeight: heroMinHeight,
                     animationDelay: '0.2s',
                 }}
             >
-                <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4 text-gray-900">
-                    We <span className="text-blue-600">Empower</span> <span className="text-gray-800">Creator</span> and drive <span className="text-blue-600">Growth</span>
-                </h1>
-                <p className="text-2xl sm:text-3xl md:text-4xl text-gray-600 mb-10">
-                    be <span className="text-blue-600 font-semibold">Yourself</span>, become a <span className="text-blue-600 font-semibold">Brand</span>
-                </p>
-                <a href="#contact-form-section" onClick={handleStartTodayClick}
-                   className={`px-8 py-3 sm:px-10 sm:py-4 text-base sm:text-lg rounded-full font-bold transition-all duration-300 ease-in-out transform hover:scale-105 bg-transparent text-blue-600 hover:bg-blue-500 hover:text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-white focus:ring-blue-500 button-glow`}
-                > Start Today! </a>
+                <div className="z-10 relative"> {/* Container for text content */}
+                    <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4 text-gray-900">
+                        We <span className="text-blue-600">Empower</span> <span className="text-gray-800">Creator</span> and drive <span className="text-blue-600">Growth</span>
+                    </h1>
+                    <p className="text-2xl sm:text-3xl md:text-4xl text-gray-600 mb-10">
+                        be <span className="text-blue-600 font-semibold">Yourself</span>, become a <span className="text-blue-600 font-semibold">Brand</span>
+                    </p>
+                    <a href="#contact-form-section" onClick={handleStartTodayClick}
+                       className={`px-8 py-3 sm:px-10 sm:py-4 text-base sm:text-lg rounded-full font-bold transition-all duration-300 ease-in-out transform hover:scale-105 bg-transparent text-blue-600 hover:bg-blue-500 hover:text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-white focus:ring-blue-500 button-glow`}
+                    > Start Today! </a>
+                </div>
+
+                {/* Hero Image 1 (hero.png - männliche Figur) - Position weiter nach unten angepasst mit transform */}
+                <div
+                    className="absolute top-[15%] sm:top-[10%] right-[5%] sm:right-[8%] md:right-[10%] lg:right-[12%] w-[37.5%] sm:w-[31.25%] md:w-[25%] lg:w-[22.5%] xl:w-[18.75%] p-1 z-0"
+                    style={{ transform: 'translateY(75%)' }} // Um 75% der eigenen Höhe nach unten verschieben
+                >
+                    <img
+                        src={heroImageUrl}
+                        alt="Hero Männchen Illustration"
+                        className="w-full h-auto object-contain"
+                        onError={(e) => {
+                            e.target.onerror = null;
+                            e.target.src = `https://placehold.co/200x300/e0e0e0/757575?text=Held+Bild`;
+                            e.target.alt = `Platzhalter für Hero Bild`;
+                        }}
+                    />
+                </div>
+
+                {/* Hero Image 2 (hero_2.png - weibliche Figur) - Top-Position angepasst, um Überlappung und Sichtbarkeit der Füße zu ermöglichen */}
+                <div className="absolute top-[65%] sm:top-[60%] left-[5%] sm:left-[8%] md:left-[10%] lg:left-[12%] w-[42%] sm:w-[33%] md:w-[25%] lg:w-[22%] xl:w-[18.5%] p-1 z-20"> {/* z-20 hinzugefügt */}
+                    <img
+                        src={hero2ImageUrl}
+                        alt="Hero Frau Illustration"
+                        className="w-full h-auto object-contain"
+                        onError={(e) => {
+                            e.target.onerror = null;
+                            e.target.src = `https://placehold.co/200x300/e0e0e0/757575?text=Heldin+Bild`;
+                            e.target.alt = `Platzhalter für Heroin Bild`;
+                        }}
+                    />
+                </div>
             </main>
 
             <section
                 id="how-it-works-section"
                 ref={howItWorksSectionRef}
-                className={`py-16 md:py-24 bg-white relative overflow-hidden fade-in-up ${isMounted ? 'fade-in-up-mounted' : ''}`}
+                className={`py-16 md:py-24 bg-white relative fade-in-up ${isMounted ? 'fade-in-up-mounted' : ''}`} /* overflow-hidden removed here too for safety, though less likely to be an issue. Removed pt-16 sm:pt-20 md:pt-24 */
                 style={{ animationDelay: '0.3s' }}
             >
-                <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8"> {/* Padding-Top entfernt */}
                     <div className="text-center mb-12">
                         <h2 className="text-3xl sm:text-4xl font-bold text-gray-900">
                             How it Works
@@ -681,19 +716,19 @@ const HomePage = () => {
                                         key={index}
                                         ref={el => imageLayerRefs.current[index] = el}
                                         src={src}
-                                        alt={`Illustration Layer ${index + 1}`}
+                                        alt={`Illustration Layer ${index + 1}`} // German: Illustrationsebene
                                         className="absolute top-0 left-0 w-full h-full object-contain"
                                         style={{ zIndex: index }}
                                         onError={(e) => {
                                             e.target.onerror = null;
-                                            e.target.src = `https://placehold.co/600x600/e0e0e0/757575?text=Layer+${index+1}+missing`;
-                                            e.target.alt = `Placeholder for Layer ${index + 1}`;
+                                            e.target.src = `https://placehold.co/600x600/e0e0e0/757575?text=Ebene+${index+1}+fehlt`;
+                                            e.target.alt = `Platzhalter für Ebene ${index + 1}`;
                                         }}
                                     />
                                 ))}
                                 {howItWorksLayerImages.length === 0 && (
                                     <div className="absolute top-0 left-0 w-full h-full flex items-center justify-center bg-gray-100 rounded-lg">
-                                        <p className="text-gray-500">Graphics will be displayed here.</p>
+                                        <p className="text-gray-500">Grafiken werden hier angezeigt.</p>
                                     </div>
                                 )}
                             </div>
@@ -820,4 +855,5 @@ export default function App() {
                 </Routes>
             </Layout>
         </BrowserRouter>
-    )}
+    );
+}
