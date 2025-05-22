@@ -21,6 +21,46 @@ const howItWorksLayerImages = [
 ];
 // --- Ende ---
 
+// --- START: Hero Section Icons Data ---
+// Pfade und Positionen final angepasst
+const heroIconsData = [
+    {
+        src: '/images/hero/flower_icon.png', // Pfad aktualisiert
+        alt: 'Blumen Icon',
+        // Position angepasst: Y-Achse tiefer, zwischen "Be yourself" und Button
+        positionClasses: 'top-[58%] left-[10%] w-16 h-16 sm:w-20 sm:h-20',
+        animationDelay: '0s'
+    },
+    {
+        src: '/images/hero/pakete_1.png', // Pfad aktualisiert
+        alt: 'Pakete Icon',
+        // Position angepasst: X-Achse weiter links vom "WE"
+        positionClasses: 'top-[12%] left-[22%] w-16 h-16 sm:w-20 sm:h-20', // left-[30%] war vorher
+        animationDelay: '0.8s'
+    },
+    {
+        src: '/images/hero/play icons.png', // Pfad aktualisiert
+        alt: 'Play Icon',
+        positionClasses: 'top-[5%] left-1/2 transform -translate-x-1/2 w-16 h-16 sm:w-20 sm:h-20',
+        animationDelay: '0.3s'
+    },
+    {
+        src: '/images/hero/shopping_bags.png', // Pfad aktualisiert
+        alt: 'Einkaufstaschen Icon',
+        // Position angepasst: Y-Achse auf Höhe des "Start Today"-Buttons
+        positionClasses: 'top-[70%] right-[30%] w-16 h-16 sm:w-20 sm:h-20',
+        animationDelay: '1.2s'
+    },
+    {
+        src: '/images/hero/zahnrad.png', // Pfad aktualisiert
+        alt: 'Zahnrad Icon',
+        // Position angepasst: X-Achse weiter nach innen (links), über dem Kopf des Männchens
+        positionClasses: 'top-[8%] right-[24%] w-16 h-16 sm:w-20 sm:h-20', // war right-[22%]
+        animationDelay: '0.6s'
+    },
+];
+// --- END: Hero Section Icons Data ---
+
 
 // Placeholder-Seiten für Creator und Seller
 const CreatorPage = () => (
@@ -464,8 +504,10 @@ const HomePage = () => {
         const calculateHeroHeight = () => {
             if (heroSectionRef.current) {
                 const topOffset = heroSectionRef.current.getBoundingClientRect().top;
-                const calculatedMinHeight = window.innerHeight - topOffset;
-                setHeroMinHeight(`${Math.max(0, calculatedMinHeight)}px`);
+                const contentHeightEstimate = 400;
+                const iconsHeightEstimate = window.innerHeight * 0.20; // Adjusted if icons are higher
+                const minScreenHeight = Math.max(contentHeightEstimate + iconsHeightEstimate, window.innerHeight - topOffset);
+                setHeroMinHeight(`${Math.max(0, minScreenHeight)}px`);
             }
         };
         const handleResize = () => {
@@ -642,17 +684,40 @@ const HomePage = () => {
             <main
                 id="hero-section"
                 ref={heroSectionRef}
-                className={`relative flex flex-grow flex-col items-center justify-center text-center fade-in-up ${isMounted ? 'fade-in-up-mounted' : ''} px-4 sm:px-6 lg:px-8`} /* overflow-hidden removed */
+                className={`relative flex-grow flex flex-col items-center fade-in-up ${isMounted ? 'fade-in-up-mounted' : ''} px-4 sm:px-6 lg:px-8`} // Removed justify-center and paddingTop style
                 style={{
                     minHeight: heroMinHeight,
                     animationDelay: '0.2s',
                 }}
             >
-                <div className="z-10 relative"> {/* Container for text content */}
-                    <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4 text-gray-900">
+                {/* START: Floating Icons Container - Positioned absolutely over the entire hero section */}
+                <div className="absolute inset-0 w-full h-full pointer-events-none z-0 overflow-visible">
+                    {heroIconsData.map((icon, index) => (
+                        <img
+                            key={`hero-icon-${index}`}
+                            src={icon.src}
+                            alt={icon.alt}
+                            className={`floating-icon absolute ${icon.positionClasses}`}
+                            style={{ animationDelay: icon.animationDelay }}
+                            onError={(e) => {
+                                e.target.onerror = null;
+                                const sizeMatch = icon.positionClasses.match(/w-(\d+)/);
+                                const tailwindUnit = sizeMatch ? parseInt(sizeMatch[1]) : 16;
+                                const pixelSize = tailwindUnit * 4;
+                                e.target.src = `https://placehold.co/${pixelSize}x${pixelSize}/e0e0e0/757575?text=Icon`;
+                                e.target.alt = `Platzhalter für ${icon.alt}`;
+                            }}
+                        />
+                    ))}
+                </div>
+                {/* END: Floating Icons Container */}
+
+                {/* Text content container - Absolutely positioned */}
+                <div className="absolute top-[40%] left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-10 w-full max-w-5xl px-4 text-center">
+                    <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4 text-gray-900 whitespace-nowrap">
                         We <span className="text-blue-600">Empower</span> <span className="text-gray-800">Creator</span> and drive <span className="text-blue-600">Growth</span>
                     </h1>
-                    <p className="text-2xl sm:text-3xl md:text-4xl text-gray-600 mb-10">
+                    <p className="text-2xl sm:text-3xl md:text-4xl text-gray-600 mb-10 whitespace-nowrap">
                         be <span className="text-blue-600 font-semibold">Yourself</span>, become a <span className="text-blue-600 font-semibold">Brand</span>
                     </p>
                     <a href="#contact-form-section" onClick={handleStartTodayClick}
@@ -660,10 +725,10 @@ const HomePage = () => {
                     > Start Today! </a>
                 </div>
 
-                {/* Hero Image 1 (hero.png - männliche Figur) - Position weiter nach unten angepasst mit transform */}
+                {/* Hero Image 1 (hero.png - männliche Figur) */}
                 <div
-                    className="absolute top-[15%] sm:top-[10%] right-[5%] sm:right-[8%] md:right-[10%] lg:right-[12%] w-[37.5%] sm:w-[31.25%] md:w-[25%] lg:w-[22.5%] xl:w-[18.75%] p-1 z-0"
-                    style={{ transform: 'translateY(75%)' }} // Um 75% der eigenen Höhe nach unten verschieben
+                    className="absolute top-[15%] sm:top-[10%] right-[5%] sm:right-[8%] md:right-[10%] lg:right-[12%] w-[37.5%] sm:w-[31.25%] md:w-[25%] lg:w-[22.5%] xl:w-[18.75%] p-1 z-5"
+                    style={{ transform: 'translateY(75%)' }}
                 >
                     <img
                         src={heroImageUrl}
@@ -677,8 +742,8 @@ const HomePage = () => {
                     />
                 </div>
 
-                {/* Hero Image 2 (hero_2.png - weibliche Figur) - Top-Position angepasst, um Überlappung und Sichtbarkeit der Füße zu ermöglichen */}
-                <div className="absolute top-[65%] sm:top-[60%] left-[5%] sm:left-[8%] md:left-[10%] lg:left-[12%] w-[42%] sm:w-[33%] md:w-[25%] lg:w-[22%] xl:w-[18.5%] p-1 z-20"> {/* z-20 hinzugefügt */}
+                {/* Hero Image 2 (hero_2.png - weibliche Figur) */}
+                <div className="absolute top-[65%] sm:top-[60%] left-[5%] sm:left-[8%] md:left-[10%] lg:left-[12%] w-[42%] sm:w-[33%] md:w-[25%] lg:w-[22%] xl:w-[18.5%] p-1 z-20">
                     <img
                         src={hero2ImageUrl}
                         alt="Hero Frau Illustration"
@@ -695,10 +760,10 @@ const HomePage = () => {
             <section
                 id="how-it-works-section"
                 ref={howItWorksSectionRef}
-                className={`py-16 md:py-24 bg-white relative fade-in-up ${isMounted ? 'fade-in-up-mounted' : ''}`} /* overflow-hidden removed here too for safety, though less likely to be an issue. Removed pt-16 sm:pt-20 md:pt-24 */
+                className={`py-16 md:py-24 bg-white relative fade-in-up ${isMounted ? 'fade-in-up-mounted' : ''}`}
                 style={{ animationDelay: '0.3s' }}
             >
-                <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8"> {/* Padding-Top entfernt */}
+                <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
                     <div className="text-center mb-12">
                         <h2 className="text-3xl sm:text-4xl font-bold text-gray-900">
                             How it Works
@@ -716,7 +781,7 @@ const HomePage = () => {
                                         key={index}
                                         ref={el => imageLayerRefs.current[index] = el}
                                         src={src}
-                                        alt={`Illustration Layer ${index + 1}`} // German: Illustrationsebene
+                                        alt={`Illustration Layer ${index + 1}`}
                                         className="absolute top-0 left-0 w-full h-full object-contain"
                                         style={{ zIndex: index }}
                                         onError={(e) => {
@@ -740,7 +805,7 @@ const HomePage = () => {
                                     We offer matchmaking services for both <span className="text-violet-700">sellers</span> and <span className="text-blue-600">creators</span> and assist <span className="text-violet-700">sellers</span> in distributing and promoting products through dedicated product campaign. Through our Partnership with TikTok-Shop we can efficiently reach a broad spectrum of <span className="text-violet-700">sellers</span> and <span className="text-blue-600">Creators</span>.
                                 </p>
                                 <div className="mb-6">
-                                    <p> {/* Changed from p + ul to a single p */}
+                                    <p>
                                         For our <strong className="text-blue-600">Creators:</strong> We foster a supportive network. We actively manage partnerships, protect their work, provide vital education, and offer dedicated support, empowering them to thrive and expand their brand.
                                     </p>
                                 </div>
@@ -801,9 +866,9 @@ const HomePage = () => {
 
 const AboutPage = () => (
     <div className="flex-grow flex flex-col items-center justify-start text-gray-800 py-8 md:py-12">
-        <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 w-full text-center"> {/* Adjusted max-width and added text-center for content */}
+        <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 w-full text-center">
             <h1 className="text-4xl font-bold mb-8">About Us</h1>
-            <div className="text-left space-y-4 text-base sm:text-lg text-gray-700"> {/* Container for paragraphs with left alignment and spacing */}
+            <div className="text-left space-y-4 text-base sm:text-lg text-gray-700">
                 <p>
                     Hello! We are Maurice & Marius, two computer scientists with a specialization in cyber-security,
                     who have taken the leap into entrepreneurship. Our mission is to act as a dynamic interface
@@ -831,11 +896,11 @@ const AboutPage = () => (
                     Maurice & Marius
                 </p>
             </div>
-            <p className="text-md text-gray-500 mt-10 mb-8"> {/* Adjusted margin for spacing */}
+            <p className="text-md text-gray-500 mt-10 mb-8">
                 Based in Stuttgart, Germany 🇩🇪
             </p>
         </div>
-        <div className="mt-0 md:mt-4 text-center"> {/* Reduced top margin for the button */}
+        <div className="mt-0 md:mt-4 text-center">
             <RouterLink to="/" className="px-6 py-2 bg-gray-200 text-gray-700 rounded-full hover:bg-gray-300 text-sm sm:text-base">
                 Back to Homepage
             </RouterLink>
@@ -855,5 +920,4 @@ export default function App() {
                 </Routes>
             </Layout>
         </BrowserRouter>
-    );
-}
+    )}

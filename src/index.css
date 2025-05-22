@@ -1,3 +1,22 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* In App.css oder index.css */
+.floating-icon {
+    animation: subtle-float 6s ease-in-out infinite;
+    /* Wichtig: Wenn du andere transform-Eigenschaften direkt auf die Icons
+       für die Positionierung anwendest (außerhalb der Animation),
+       könnte das die Animation überschreiben.
+       Die aktuelle Methode, Positionierung über top/left/right und
+       die Animation nur für translateY zu nutzen, ist gut. */
+}
+
+@keyframes subtle-float {
+    0%, 100% {
+        transform: translateY(0px);
+    }
+    50% {
+        transform: translateY(-10px); /* Oder ein anderer Wert für die Schwebehöhe */
+    }
+}
