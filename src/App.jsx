@@ -17,11 +17,10 @@ const heroIconsData = [
     { src: '/images/hero/flower_icon.png', alt: 'Blumen Icon', positionClasses: 'md:top-[58%] md:left-[10%] md:w-20 md:h-20 top-[65%] left-[5%] w-12 h-12 sm:top-[58%] sm:left-[8%] sm:w-14 sm:h-14', animationDelay: '0s' },
     { src: '/images/hero/pakete_1.png', alt: 'Pakete Icon', positionClasses: 'md:top-[12%] md:left-[22%] md:w-20 md:h-20 top-[12%] left-[10%] w-12 h-12 sm:top-[10%] sm:left-[15%] sm:w-14 sm:h-14', animationDelay: '0.8s' },
     { src: '/images/hero/play icons.png', alt: 'Play Icon', positionClasses: 'md:top-[5%] md:left-1/2 md:transform md:-translate-x-1/2 md:w-20 md:h-20 top-[5%] left-1/2 transform -translate-x-1/2 w-12 h-12 sm:w-14 sm:h-14', animationDelay: '0.3s' },
-    // Updated shopping_bags.png for mobile: top/left based, and different from desktop
     {
         src: '/images/hero/shopping_bags.png',
         alt: 'Einkaufstaschen Icon',
-        positionClasses: 'md:top-[70%] md:right-[30%] md:w-20 md:h-20 top-[62%] left-[70%] w-10 h-10 sm:top-[62%] sm:left-[70%] sm:w-12 sm:h-12', // Mobile: top/left; Desktop: top/right
+        positionClasses: 'md:top-[70%] md:right-[30%] md:w-20 md:h-20 top-[62%] left-[70%] w-10 h-10 sm:top-[62%] sm:left-[70%] sm:w-12 sm:h-12',
         animationDelay: '1.2s'
     },
     { src: '/images/hero/zahnrad.png', alt: 'Zahnrad Icon', positionClasses: 'md:top-[8%] md:right-[24%] md:w-20 md:h-20 top-[10%] right-[8%] w-12 h-12 sm:top-[8%] sm:right-[10%] sm:w-14 sm:h-14', animationDelay: '0.6s' },
@@ -90,7 +89,7 @@ const MobileMenu = ({ isOpen, onClose, navLinks, handleContactScroll, location, 
     return (
         <div className="fixed inset-0 bg-white z-40 flex flex-col items-center justify-center p-6 md:hidden">
             <nav className="flex flex-col space-y-4 w-full max-w-xs text-center">
-                {navLinks.map(link => ( // Mobile menu uses all navLinks
+                {navLinks.map(link => (
                     <a
                         key={link.id}
                         href={link.href}
@@ -121,7 +120,7 @@ const MobileMenu = ({ isOpen, onClose, navLinks, handleContactScroll, location, 
 
 // Consistent padding for subpage content wrappers
 const subpageContentPaddingStyle = {
-    paddingTop: `calc(var(--nav-obstruction-height, 70px) - 2.5rem)`, // Title much closer to nav
+    paddingTop: `calc(var(--nav-obstruction-height, 70px) - 2.5rem)`,
     paddingBottom: '2rem'
 };
 
@@ -272,6 +271,80 @@ const AboutPage = () => (
         <div className="text-center py-4 sm:py-6">
             <RouterLink to="/" className="px-5 py-1.5 sm:px-6 sm:py-2 bg-gray-200 text-gray-700 rounded-full hover:bg-gray-300 text-xs sm:text-sm md:text-base">
                 Back to Homepage
+            </RouterLink>
+        </div>
+    </div>
+);
+
+// Impressum Page Component
+const ImpressumPage = () => (
+    <div className="min-h-screen flex flex-col text-gray-800">
+        <div
+            className="flex-grow flex flex-col items-start w-full px-4 sm:px-6 lg:px-8"
+            style={subpageContentPaddingStyle}
+        >
+            <div className="max-w-3xl w-full mx-auto">
+                <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900 mb-6 md:mb-8 text-left">
+                    Impressum
+                </h1>
+                <div className="space-y-4 text-sm md:text-base text-gray-700 text-left">
+                    <section className="mb-6">
+                        <h2 className="text-lg sm:text-xl font-semibold text-gray-800 mb-2">Angaben gemäß § 5 TMG</h2>
+                        <p>Mauris GbR<br />
+                            Saalfelderstraße 11<br />
+                            72622 Nürtingen</p>
+                    </section>
+
+                    <section className="mb-6">
+                        <h2 className="text-lg sm:text-xl font-semibold text-gray-800 mb-2">Vertreten durch die Gesellschafter</h2>
+                        <p>Maurice Mundi<br />
+                            Marius Hopp</p>
+                    </section>
+
+                    <section className="mb-6">
+                        <h2 className="text-lg sm:text-xl font-semibold text-gray-800 mb-2">Kontakt</h2>
+                        <p>E-Mail: contact@mm-solutions.studio</p>
+                        {/* <p>Telefon: [Hier Telefonnummer einfügen, falls gewünscht]</p> */}
+                    </section>
+
+                    {/* <section className="mb-6">
+                        <h2 className="text-lg sm:text-xl font-semibold text-gray-800 mb-2">Umsatzsteuer-ID</h2>
+                        <p>Umsatzsteuer-Identifikationsnummer gemäß § 27 a Umsatzsteuergesetz:<br />
+                        [Hier USt-IdNr. einfügen, falls vorhanden]</p>
+                    </section> */}
+
+                    <section className="mb-6">
+                        <h2 className="text-lg sm:text-xl font-semibold text-gray-800 mb-2">Verantwortlich für den Inhalt nach § 18 Abs. 2 MStV</h2>
+                        <p>Maurice Mundi<br />
+                            Saalfelderstraße 11<br />
+                            72622 Nürtingen</p>
+                    </section>
+
+                    <section className="mt-8">
+                        <h2 className="text-lg sm:text-xl font-semibold text-gray-800 mb-2">Haftungsausschluss (Disclaimer)</h2>
+                        <h3 className="text-md sm:text-lg font-semibold text-gray-700 mt-3 mb-1">Haftung für Inhalte</h3>
+                        <p className="text-xs sm:text-sm">
+                            Als Diensteanbieter sind wir gemäß § 7 Abs.1 TMG für eigene Inhalte auf diesen Seiten nach den allgemeinen Gesetzen verantwortlich. Nach §§ 8 bis 10 TMG sind wir als Diensteanbieter jedoch nicht verpflichtet, übermittelte oder gespeicherte fremde Informationen zu überwachen oder nach Umständen zu forschen, die auf eine rechtswidrige Tätigkeit hinweisen. Verpflichtungen zur Entfernung oder Sperrung der Nutzung von Informationen nach den allgemeinen Gesetzen bleiben hiervon unberührt. Eine diesbezügliche Haftung ist jedoch erst ab dem Zeitpunkt der Kenntnis einer konkreten Rechtsverletzung möglich. Bei Bekanntwerden von entsprechenden Rechtsverletzungen werden wir diese Inhalte umgehend entfernen.
+                        </p>
+                        <h3 className="text-md sm:text-lg font-semibold text-gray-700 mt-3 mb-1">Haftung für Links</h3>
+                        <p className="text-xs sm:text-sm">
+                            Unser Angebot enthält Links zu externen Websites Dritter, auf deren Inhalte wir keinen Einfluss haben. Deshalb können wir für diese fremden Inhalte auch keine Gewähr übernehmen. Für die Inhalte der verlinkten Seiten ist stets der jeweilige Anbieter oder Betreiber der Seiten verantwortlich. Die verlinkten Seiten wurden zum Zeitpunkt der Verlinkung auf mögliche Rechtsverstöße überprüft. Rechtswidrige Inhalte waren zum Zeitpunkt der Verlinkung nicht erkennbar. Eine permanente inhaltliche Kontrolle der verlinkten Seiten ist jedoch ohne konkrete Anhaltspunkte einer Rechtsverletzung nicht zumutbar. Bei Bekanntwerden von Rechtsverletzungen werden wir derartige Links umgehend entfernen.
+                        </p>
+                        <h3 className="text-md sm:text-lg font-semibold text-gray-700 mt-3 mb-1">Urheberrecht</h3>
+                        <p className="text-xs sm:text-sm">
+                            Die durch die Seitenbetreiber erstellten Inhalte und Werke auf diesen Seiten unterliegen dem deutschen Urheberrecht. Die Vervielfältigung, Bearbeitung, Verbreitung und jede Art der Verwertung außerhalb der Grenzen des Urheberrechtes bedürfen der schriftlichen Zustimmung des jeweiligen Autors bzw. Erstellers. Downloads und Kopien dieser Seite sind nur für den privaten, nicht kommerziellen Gebrauch gestattet. Soweit die Inhalte auf dieser Seite nicht vom Betreiber erstellt wurden, werden die Urheberrechte Dritter beachtet. Insbesondere werden Inhalte Dritter als solche gekennzeichnet. Sollten Sie trotzdem auf eine Urheberrechtsverletzung aufmerksam werden, bitten wir um einen entsprechenden Hinweis. Bei Bekanntwerden von Rechtsverletzungen werden wir derartige Inhalte umgehend entfernen.
+                        </p>
+                    </section>
+                    <p className="mt-8 text-xs text-gray-500">
+                        Dieses Impressum wurde mit Hilfe von Vorlagen erstellt. Für eine vollständige Rechtssicherheit empfiehlt es sich, das Impressum
+                        von einem Rechtsanwalt prüfen zu lassen.
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div className="text-center py-4 sm:py-6">
+            <RouterLink to="/" className="px-5 py-1.5 sm:px-6 sm:py-2 bg-gray-200 text-gray-700 rounded-full hover:bg-gray-300 text-xs sm:text-sm md:text-base">
+                Zurück zur Startseite
             </RouterLink>
         </div>
     </div>
@@ -456,7 +529,7 @@ const Layout = ({ children }) => {
         }
     };
 
-    const allPillNavLinks = [ // Renamed to avoid conflict if needed elsewhere, though not strictly necessary here
+    const allPillNavLinks = [
         { id: 'hero-section', label: 'Home', href: '#hero-section', isRouterLink: false },
         { id: 'how-it-works-section', label: 'How it Works', href: '#how-it-works-section', isRouterLink: false },
         { id: 'creator', label: 'Creator', href: '/creator', isRouterLink: true },
@@ -465,7 +538,6 @@ const Layout = ({ children }) => {
         { id: 'contact-form-section', label: 'Contact Us', href: '#contact-form-section', isRouterLink: false, isContact: true },
     ];
 
-    // Filter out "Contact Us" for desktop pill navigation
     const desktopPillNavLinks = allPillNavLinks.filter(link => link.id !== 'contact-form-section');
 
 
@@ -527,7 +599,7 @@ const Layout = ({ children }) => {
                     }}
                 >
                     <div className="flex items-center justify-center space-x-1 sm:space-x-1.5 md:space-x-2 bg-gray-100 text-gray-700 px-2 py-1 sm:px-3 sm:py-1.5 rounded-full shadow-lg">
-                        {desktopPillNavLinks.map(link => ( // Use filtered links for desktop
+                        {desktopPillNavLinks.map(link => (
                             <a
                                 key={link.id}
                                 href={link.isRouterLink ? link.href : (location.pathname === '/' ? link.href : `/${link.href}`)}
@@ -547,7 +619,7 @@ const Layout = ({ children }) => {
                 <MobileMenu
                     isOpen={isMobileMenuOpen}
                     onClose={() => setIsMobileMenuOpen(false)}
-                    navLinks={allPillNavLinks} // Mobile menu uses all links
+                    navLinks={allPillNavLinks}
                     handleContactScroll={handleContactScroll}
                     location={location}
                     activeNavHash={activeNavHash}
@@ -565,6 +637,9 @@ const Layout = ({ children }) => {
                 >
                     <p className="text-gray-500 text-xs sm:text-sm">
                         &copy; {new Date().getFullYear()} M&M Solutions. All rights reserved.
+                        <RouterLink to="/impressum" className="ml-2 text-blue-600 hover:text-blue-800 underline">
+                            Impressum
+                        </RouterLink>
                     </p>
                 </footer>
             </div>
@@ -828,6 +903,7 @@ export default function App() {
                     <Route path="/about" element={<AboutPage />} />
                     <Route path="/creator" element={<CreatorPage />} />
                     <Route path="/seller" element={<SellerPage />} />
+                    <Route path="/impressum" element={<ImpressumPage />} />
                     <Route path="*" element={
                         <div className="min-h-screen h-screen flex flex-col items-center justify-center text-center py-10 px-4">
                             <h1 className="text-4xl font-bold mb-4">404 - Page Not Found</h1>
