@@ -819,6 +819,12 @@ const HomePage = () => {
                     <img src={heroImageUrl} alt="Hero Männchen Illustration" className="w-full h-auto object-contain"
                          onError={(e) => { e.target.onerror = null; e.target.src = getPlaceholderUrl(150,225,'Held'); e.target.alt = `Platzhalter Hero`; }} />
                 </div>
+                <div className="visually-hidden">
+                    Creator Agency, TikTok-Shop Partner, Brand-Agency, Creator Agentur, Brand-Agentur,.
+                    M&M Solutions ist Ihr offizieller TikTok-Shop Partner und Ihre Creator Agentur für umfassendes Brand-Management.
+                    Wir agieren als Creator Agency und Brand-Agency, um Ihre Präsenz auf TikTok Shop zu maximieren.
+                    Keywords: Creator Agency Nürtingen, TikTok-Shop Partner Deutschland, Brand-Agency für Social Media, Creator Agentur für Influencer Marketing, Creator Agency, Marketing-Agency.
+                </div>
             </main>
 
             <section

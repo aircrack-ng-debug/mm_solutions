@@ -20,3 +20,15 @@
         transform: translateY(-10px); /* Oder ein anderer Wert für die Schwebehöhe */
     }
 }
+
+.visually-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    padding: 0;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    border: 0;
+    white-space: nowrap; /* Verhindert Zeilenumbrüche, falls die Keywords als einzelne Wörter interpretiert werden sollen */
+}
