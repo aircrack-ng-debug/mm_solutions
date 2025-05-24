@@ -315,9 +315,7 @@ const ImpressumPage = () => (
 
                     <section className="mb-6">
                         <h2 className="text-lg sm:text-xl font-semibold text-gray-800 mb-2">Verantwortlich für den Inhalt nach § 18 Abs. 2 MStV</h2>
-                        <p>Maurice Mundi<br />
-                            Saalfelderstraße 11<br />
-                            72622 Nürtingen</p>
+                        <p>Maurice Mundi</p>
                     </section>
 
                     <section className="mt-8">
