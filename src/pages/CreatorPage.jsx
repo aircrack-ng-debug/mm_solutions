@@ -9,9 +9,37 @@ const subpageContentPaddingStyle = {
     paddingTop: `calc(var(--nav-obstruction-height, 70px) - 2.5rem)`,
     paddingBottom: '2rem'
 };
+const pageTitle = "M&M Solutions | TikTok Shop Partner & Creator Agency";
+const pageDescription = "M&M Solutions Studio - Your official TikTok Shop partner agency. We connect Creator & Seller for maximum growth and authentic marketing on TikTok Shop..";
+const pageCanonicalUrl = "https://mm-solutions.studio/home";
+const ogImageUrl = "https://mm-solutions.studio/og-image.png";
 
 const CreatorPage = () => (
     <div className="min-h-screen flex flex-col text-gray-800">
+        <div className="visually-hidden">
+            Creator Agency, TikTok-Shop Partner, Brand-Agency, Creator Agentur, Brand-Agentur, M&M Solutions Studio, M&M
+            Solutions TikTok, M&M Solutions Agency .
+            M&M Solutions ist Ihr offizieller TikTok-Shop Partner und Ihre Creator Agentur für umfassendes
+            Brand-Management.
+            Wir agieren als Creator Agency und Brand-Agency, um Ihre Präsenz auf TikTok Shop zu maximieren.
+            Keywords: Creator Agency Nürtingen, TikTok-Shop Partner Deutschland, Brand-Agency für Social Media, Creator
+            Agentur für Influencer Marketing, Creator Agency, Marketing-Agency, M&M Solutions TikTok, M&M Solutions
+            Agency, M&M Solutions, M&M Solutions, M&M Solutions Creator Agency, M&M Solutions Creator, M&M Solutions
+            Partner.
+        </div>
+        {/* Meta-Tags direkt mit React 19 setzen */}
+        <title>{pageTitle}</title>
+        <meta name="description" content={pageDescription} />
+        <link rel="canonical" href={pageCanonicalUrl} />
+
+        {/* Open Graph Tags */}
+        <meta property="og:title" content={pageTitle} />
+        <meta property="og:description" content={pageDescription} />
+        <meta property="og:url" content={pageCanonicalUrl} />
+        <meta property="og:type" content="website" />
+        <meta property="og:image" content={ogImageUrl} />
+        <meta property="og:site_name" content="M&M Solutions" />
+        <meta property="og:locale" content="de_DE" />
         <div
             className="flex-grow flex flex-col items-center justify-center w-full px-4 sm:px-6 lg:px-8"
             style={subpageContentPaddingStyle}
@@ -27,7 +55,11 @@ const CreatorPage = () => (
                                 src={creatorImageUrl}
                                 alt="Creator Illustration"
                                 className="absolute top-0 left-0 w-full h-full object-contain rounded-lg"
-                                onError={(e) => { e.target.onerror = null; e.target.src = getPlaceholderUrl(300, 300, 'Creator Bild'); e.target.alt = `Platzhalter für Creator Bild`; }}
+                                onError={(e) => {
+                                    e.target.onerror = null;
+                                    e.target.src = getPlaceholderUrl(300, 300, 'Creator Bild');
+                                    e.target.alt = `Platzhalter für Creator Bild`;
+                                }}
                             />
                         </div>
                     </div>
@@ -37,15 +69,29 @@ const CreatorPage = () => (
                                 Become Part of Our Community
                             </h2>
                             <p className="mb-3 text-sm md:text-base">
-                                As a creator, you tell stories. You have a face, a community, and you know how to communicate on social media. Sellers, especially in e-commerce, often find themselves working behind the scenes of their shops. They need creators to market their products. The question often arises: "But which creators are the right fit for my product?". This is where M&M Solutions comes in. We provide the tools and the network to set up targeted marketing campaigns, efficiently connecting creators and products.
+                                As a creator, you tell stories. You have a face, a community, and you know how to
+                                communicate on social media. Sellers, especially in e-commerce, often find themselves
+                                working behind the scenes of their shops. They need creators to market their products.
+                                The question often arises: "But which creators are the right fit for my product?". This
+                                is where M&M Solutions comes in. We provide the tools and the network to set up targeted
+                                marketing campaigns, efficiently connecting creators and products.
                             </p>
                             <p className="mb-3 text-sm md:text-base">
                                 As a creator, you'll find several advantages here:
                             </p>
-                            <h3 className="text-base sm:text-lg md:text-xl font-semibold text-gray-800 mt-4 md:mt-5 mb-2 md:mb-3">Benefits for Creators:</h3>
+                            <h3 className="text-base sm:text-lg md:text-xl font-semibold text-gray-800 mt-4 md:mt-5 mb-2 md:mb-3">Benefits
+                                for Creators:</h3>
                             <ul className="list-disc list-inside pl-4 space-y-1.5 md:space-y-2 mb-4 md:mb-5 text-sm md:text-base">
-                                <li><strong>Access to diverse and often carefully curated product ranges:</strong> Campaigns offer creators the opportunity to discover a wide selection of products and sellers. This makes it easier for them to find and present thematically relevant and in-demand items for their content.</li>
-                                <li><strong>Flexible cooperation models and attractive, performance-based earning opportunities:</strong> Through campaigns, creators can generate individual affiliate links for products. For every sale made via these links, they receive a commission, enabling direct monetization of their reach and content.</li>
+                                <li><strong>Access to diverse and often carefully curated product
+                                    ranges:</strong> Campaigns offer creators the opportunity to discover a wide
+                                    selection of products and sellers. This makes it easier for them to find and present
+                                    thematically relevant and in-demand items for their content.
+                                </li>
+                                <li><strong>Flexible cooperation models and attractive, performance-based earning
+                                    opportunities:</strong> Through campaigns, creators can generate individual
+                                    affiliate links for products. For every sale made via these links, they receive a
+                                    commission, enabling direct monetization of their reach and content.
+                                </li>
                             </ul>
                         </div>
                         <div className="mt-auto pt-4">
@@ -61,7 +107,8 @@ const CreatorPage = () => (
             </div>
         </div>
         <div className="text-center py-4 sm:py-6">
-            <RouterLink to="/" className="px-5 py-1.5 sm:px-6 sm:py-2 bg-gray-200 text-gray-700 rounded-full hover:bg-gray-300 text-xs sm:text-sm md:text-base">
+            <RouterLink to="/"
+                        className="px-5 py-1.5 sm:px-6 sm:py-2 bg-gray-200 text-gray-700 rounded-full hover:bg-gray-300 text-xs sm:text-sm md:text-base">
                 Back to Homepage
             </RouterLink>
         </div>
