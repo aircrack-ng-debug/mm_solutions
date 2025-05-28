@@ -9,7 +9,7 @@ const subpageContentPaddingStyle = {
     paddingTop: `calc(var(--nav-obstruction-height, 70px) - 2.5rem)`,
     paddingBottom: '2rem'
 };
-const pageTitle = "M&M Solutions | TikTok Shop Partner & Creator Agency";
+const pageTitle = "M&M Solutions Studio | TikTok Shop Partner & Creator Agency";
 const pageDescription = "M&M Solutions Studio - Your official TikTok Shop partner agency. We connect Creator & Seller for maximum growth and authentic marketing on TikTok Shop..";
 const pageCanonicalUrl = "https://mm-solutions.studio/home";
 const ogImageUrl = "https://mm-solutions.studio/og-image.png";
